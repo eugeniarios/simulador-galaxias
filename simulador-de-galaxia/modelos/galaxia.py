@@ -62,5 +62,5 @@ class Galaxia:
 
 
         plt.title("GalaxiasInterconectadas")
-        plt.savefig("simulador-de-galaxia/grafo_img/galaxias-interconectadas.png")   
+        plt.savefig("simulador-galaxias\simulador-de-galaxia\grafo_img\galaxias-interconectadas.png")   
 

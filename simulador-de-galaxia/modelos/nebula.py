@@ -15,7 +15,7 @@ class Nebula(NaveEspacial):
             
             for vecino in grafo.neighbors(nodo_actual):
                 distancia_arco = grafo.get_edge_data(nodo_actual, vecino)["distancia"]
-                velocidad_nave = self._velocidad_maxima
+                velocidad_nave = self._velocidad
                 
                 #condicion especifica de la nave: cuando la distancia es mayor a 4 se tarda uno mas
                 if distancia_arco > 4:
@@ -40,6 +40,12 @@ class Nebula(NaveEspacial):
         distancia_total_con_carga= lambda distancia_origen_destino: distancia_origen_destino + 1 if distancia_origen_destino > 4 else distancia_origen_destino
         
         
-        return {"ruta":ruta,"distancia_carga":distancia_total_con_carga(distancia_origen_destino)}
+        datos= {
+            "ruta":ruta,
+            "distancia_carga":distancia_total_con_carga(distancia_origen_destino), 
+            "distancia_od":distancia_origen_destino
+        }
+
+        return datos
 
     

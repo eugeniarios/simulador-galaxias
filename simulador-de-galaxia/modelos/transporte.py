@@ -15,7 +15,7 @@ class Transporte(NaveEspacial):
             
             for vecino in grafo.neighbors(nodo_actual):
                 distancia_arco = grafo.get_edge_data(nodo_actual, vecino)["distancia"]
-                velocidad_nave = self._velocidad_maxima
+                velocidad_nave = self._velocidad
                 
 
                 if self._capacidad_carga / 2 < carga: 
@@ -40,5 +40,11 @@ class Transporte(NaveEspacial):
         distancia_total_con_carga= lambda distancia_origen_destino: distancia_origen_destino + 1 if self._capacidad_carga / 2 < carga else distancia_origen_destino
         
         
-        return {"ruta":ruta,"distancia_carga":distancia_total_con_carga(distancia_origen_destino)}
+        datos= {
+            "ruta":ruta,
+            "distancia_carga":distancia_total_con_carga(distancia_origen_destino), 
+            "distancia_od":distancia_origen_destino
+        }
+
+        return datos
      
