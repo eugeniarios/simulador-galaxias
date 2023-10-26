@@ -1,21 +1,43 @@
 import tkinter as tk
-from main import nave_viper, nave_nebula, nave_transporte, galaxia, imprimir_resultados
+from controller.controller import obtener_eventos
+from main import nave_viper, nave_nebula, nave_transporte, galaxia, arbol
 
 planetas= list(galaxia.get_galaxia().nodes)
 
 
 # Función que se ejecutará cuando se haga clic en el botón "Iniciar Viaje"
 def iniciar_viaje():
-    nave_seleccionada = opcion_nave.get()
+    naves = {
+        nave_viper.get_nombre() : nave_viper,
+        nave_nebula.get_nombre() : nave_nebula,
+        nave_transporte.get_nombre() : nave_transporte 
+    }
+    nave_seleccionada= naves[opcion_nave.get()]
+    evento= obtener_eventos(arbol)
     carga = carga_entry.get()
     origen = origen_planeta.get()
     destino = destino_planeta.get()
+    ruta= nave_seleccionada.encontar_ruta(galaxia.get_galaxia(), origen, destino, int(carga))
+    distancia_total= ruta["distancia_carga"] + evento.get_modificador_distancia()
 
     # Aquí puedes usar los datos ingresados para realizar el viaje, calculando la ruta y otros detalles.
 
     # Por ahora, solo mostraremos un mensaje de confirmación
-    mensaje = f"Viaje iniciado con la nave {nave_seleccionada}, llevando {carga} unidades de carga desde {origen} a {destino}."
+    mensaje=f"""
+        ---------------------Simulador de galaxias---------------------\n
+        ------------Detalle nave------------------\n
+        Nave: {nave_seleccionada.get_nombre()}\n Velocidad: {nave_seleccionada.get_velocidad()}\n Capacidad: {nave_seleccionada.get_capacidad_carga()}
+        ------------Creando evento----------------
+        Evento espacial: {evento}
+        ------------Calculando ruta---------------
+        Planeta de partida: {origen}\n Planeta destino: {destino}\n Carga: {carga}\n Ruta mas corta: {ruta['ruta']} - Parsecs: {ruta['distancia_od']} \n Parsecs de ruta realizada por {nave_seleccionada.get_nombre()}: {ruta['distancia_carga']}
+        Distancia total con evento: {distancia_total}
+        ------------Fin viaje----------------
+    """
     resultado_label.config(text=mensaje)
+
+
+
 
 # Crear la ventana principal
 ventana = tk.Tk()
@@ -33,7 +55,7 @@ titulo_label.pack()
 # Opción para seleccionar la nave
 nave_label = tk.Label(ventana, text="Selecciona una nave:")
 nave_label.pack()
-nave_opciones = [nave_viper, nave_transporte, nave_nebula]
+nave_opciones = [nave_viper.get_nombre(), nave_transporte.get_nombre(), nave_nebula.get_nombre()]
 nave_seleccion = tk.OptionMenu(ventana, opcion_nave, *nave_opciones)
 nave_seleccion.pack()
 
