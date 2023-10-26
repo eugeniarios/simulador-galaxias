@@ -46,6 +46,8 @@ class Galaxia:
     def set_galaxia(self,galaxia): 
         self._galaxia= galaxia
 
+  
+
 
     def dibujar_galaxia(self):
         etiquetas={}
@@ -60,5 +62,5 @@ class Galaxia:
 
 
         plt.title("GalaxiasInterconectadas")
-        plt.savefig("grafo_img/galaxias-interconectadas.png")   
+        plt.savefig("simulador-de-galaxia/grafo_img/galaxias-interconectadas.png")   
 

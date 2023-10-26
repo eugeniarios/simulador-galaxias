@@ -1,5 +1,7 @@
 from modelos.galaxia import Galaxia
 from modelos.viper import Viper
+from modelos.transporte import Transporte
+from modelos.nebula import Nebula
 from modelos.eventos import Evento
 import random 
 
@@ -38,7 +40,7 @@ def imprimir_resultados(nave,ruta,evento,origen,destino,carga,distancia_total):
     print("------------Creando evento----------------")
     print(f"-> Evento espacial: {evento}")
     print("------------Calculando ruta---------------")
-    print(f"-> Planeta de partida: {origen}\n-> Planeta destino: {destino}\n-> Carga: {carga}\n-> Ruta mas corta: {ruta['ruta']} - parsecs de ruta: {ruta['distancia_carga']}")
+    print(f"-> Planeta de partida: {origen}\n-> Planeta destino: {destino}\n-> Carga: {carga}\n-> Ruta mas corta: {ruta['ruta']} - Parsecs: {ruta['distancia_od']} \n-> Parsecs de ruta realizada por {nave.get_nombre()}: {ruta['distancia_carga']}")
     print(f"-> Distancia total con evento: {distancia_total}")
     print("------------Fin viaje----------------")
 
@@ -46,7 +48,9 @@ galaxia= Galaxia()
 galaxia.dibujar_galaxia()
 
 nave_viper= Viper("viper", 2.5, 50)
-carga= 60
+nave_transporte= Transporte("Cargament",1,200)
+nave_nebula= Nebula("Nebula",1.5,100)
+carga= 20
 origen= "Picon" 
 destino= "Aquarion"
 
@@ -57,6 +61,3 @@ modificador= evento.get_modificador_distancia()
 distancia_total= ruta["distancia_carga"] + modificador
 
 imprimir_resultados(nave_viper,ruta,evento,origen,destino,carga,distancia_total)
-
-
-

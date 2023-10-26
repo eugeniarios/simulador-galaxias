@@ -39,4 +39,10 @@ class Viper(NaveEspacial):
         
         distancia_total_con_carga= lambda distancia_origen_destino: distancia_origen_destino - 1 if distancia_origen_destino > 4 and carga < self._capacidad_carga else distancia_origen_destino
         
-        return {"ruta":ruta,"distancia_carga":distancia_total_con_carga(distancia_origen_destino)}
+        datos= {
+            "ruta":ruta,
+            "distancia_carga":distancia_total_con_carga(distancia_origen_destino), 
+            "distancia_od":distancia_origen_destino
+        }
+
+        return datos
