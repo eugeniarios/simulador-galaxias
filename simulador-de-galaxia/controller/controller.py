@@ -50,8 +50,11 @@ def simular_viaje(nave,galaxia,origen,destino,carga,arbol) -> str:
     # Aquí puedes obtener los datos ingresados por el usuario y realizar la simulación
     evento= obtener_eventos(arbol)
     viaje= nave.encontrar_ruta(galaxia, origen, destino, carga)
-    distancia_total= viaje["distancia_carga"] + evento.get_modificador_distancia()   
-    time.sleep(2)
+    if evento.get_nombre() == 1:
+        distancia_total= 1
+    else:
+        distancia_total= viaje["distancia_carga"] + evento.get_modificador_distancia()
+    time.sleep(1)
 
     mensaje = f"""
     ------------------ Detalle nave ------------------
@@ -61,7 +64,6 @@ def simular_viaje(nave,galaxia,origen,destino,carga,arbol) -> str:
     ------------------ Creando evento ------------------
     Evento espacial: {evento.get_nombre()}
     Descripción evento= {evento.get_descripcion()}
-    Distancia afectada en {evento.get_modificador_distancia()} parsecs
     ------------------ Calculando ruta ------------------
     Planeta de partida: {origen}
     Planeta destino: {destino}

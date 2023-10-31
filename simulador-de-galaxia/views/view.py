@@ -126,10 +126,10 @@ class Gui(tk.Tk):
         nave_label = ttk.Label(controles_marco, text="Selecciona una nave:")
         nave_label.grid(column=0, row=0, sticky="w")
 
-        nave_opciones = [self._nave_viper, self._nave_transporte, self._nave_nebula]
+        nave_opciones = [self._nave_viper.get_nombre(), self._nave_transporte.get_nombre(), self._nave_nebula.get_nombre()]
         nave_seleccion = ttk.Combobox(controles_marco, textvariable=self._opcion_nave, values=nave_opciones, width=60)
         nave_seleccion.grid(column=1, row=0, pady=5, padx=10, sticky="w")
-        self._indice_nave= nave_seleccion.current()
+
         # Entrada para ingresar la carga
         carga_label = ttk.Label(controles_marco, text="Carga a transportar:")
         carga_label.grid(column=0, row=1, sticky="w")
@@ -178,12 +178,12 @@ class Gui(tk.Tk):
         self._mensaje_cuadro.insert('1.0', self._resultado.get())  # Insertar contenido inicial
 
         # Configurar el canvas para contener el cuadro de texto
-        canvas.create_window((0, 0), window=self._mensaje_cuadro, anchor='nw')
+        canvas.create_window((0, 0), window=self._mensaje_cuadro, anchor="nsew")
 
-        # Configura la expansión de la cuadrícula en ambas direcciones
+        """# Configura la expansión de la cuadrícula en ambas direcciones
         controles_marco.columnconfigure(0, weight=1)  # Columna 0
         controles_marco.columnconfigure(1, weight=1)  # Columna 1
-        canvas.grid(column=0, columnspan=15, rowspan=5, pady=1, padx=1, sticky="nsew")
+        canvas.grid(column=0, columnspan=15, rowspan=5, pady=1, padx=1, sticky="nsew")"""
 
     def mostrar_vista_galaxia(self):
         #oculta el simulador y muestra el mapa de la galaxia
@@ -230,17 +230,19 @@ class Gui(tk.Tk):
         self._resultado.set("Ejecutando de la simulación...")
         self.update_idletasks()
 
+        print(self._opcion_nave.get())
+
         origen = self._origen_planeta.get()
         destino = self._destino_planeta.get()
         carga = float(self._carga_entry.get())
-        naves= [
-            self._nave_viper, 
-            self._nave_nebula, 
-            self._nave_transporte
-        ]
+        naves= {
+            self._nave_viper.get_nombre() : self._nave_viper, 
+            self._nave_transporte.get_nombre() : self._nave_transporte,
+            self._nave_nebula.get_nombre() : self._nave_nebula
+        }
         
         # Llamar a tu función de simulación con estos datos
-        resultado_simulacion = simular_viaje(naves[self._indice_nave-1],self._grafo,origen,destino,carga,self._arbol)
+        resultado_simulacion = simular_viaje(naves[self._opcion_nave.get()],self._grafo,origen,destino,carga,self._arbol)
 
         # Mostrar los resultados en una etiqueta o ventana emergente
         self._resultado.set(resultado_simulacion)

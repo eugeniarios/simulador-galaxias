@@ -11,6 +11,9 @@ class NaveEspacial:
         return self._velocidad
     def get_capacidad_carga(self):
         return self._capacidad_carga
+    def get_descripcion(self):
+        return f"capacidad: {self._capacidad_carga} - velocidad: {self._velocidad}"
+
     
     def set_nombre(self, nombre):
         self._nombre=nombre
@@ -19,8 +22,6 @@ class NaveEspacial:
     def set_capacidad_carga(self, capacidad_carga):
         self._capacidad_carga=capacidad_carga
 
-    def __str__(self) -> str:
-        return f"{self._nombre} - capacidad: {self._capacidad_carga} - velocidad: {self._velocidad}"
 
     @abstractmethod
     def encontrar_ruta(self,galaxia, origen, destino, carga):
