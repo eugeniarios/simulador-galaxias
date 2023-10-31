@@ -177,14 +177,6 @@ class Gui(tk.Tk):
         self._mensaje_cuadro.grid(row=0, column=0, rowspan=5, columnspan=5, sticky="nsew")  # Ajusta los valores de rowspan y columnspan según sea necesario
         self._mensaje_cuadro.insert('1.0', self._resultado.get())  # Insertar contenido inicial
 
-        # Configurar el canvas para contener el cuadro de texto
-        canvas.create_window((0, 0), window=self._mensaje_cuadro, anchor="nsew")
-
-        """# Configura la expansión de la cuadrícula en ambas direcciones
-        controles_marco.columnconfigure(0, weight=1)  # Columna 0
-        controles_marco.columnconfigure(1, weight=1)  # Columna 1
-        canvas.grid(column=0, columnspan=15, rowspan=5, pady=1, padx=1, sticky="nsew")"""
-
     def mostrar_vista_galaxia(self):
         #oculta el simulador y muestra el mapa de la galaxia
         self.cuerpo_principal.pack_forget()
