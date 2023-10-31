@@ -23,5 +23,5 @@ class NaveEspacial:
         return f"{self._nombre} - capacidad: {self._capacidad_carga} - velocidad: {self._velocidad}"
 
     @abstractmethod
-    def encontar_ruta(self,galaxia, origen, destino, carga):
+    def encontrar_ruta(self,galaxia, origen, destino, carga):
         pass

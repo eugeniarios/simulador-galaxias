@@ -2,7 +2,7 @@ from .nave import NaveEspacial
 
 
 class Nebula(NaveEspacial):
-    def encontar_ruta(self, grafo, origen, destino, carga):
+    def encontrar_ruta(self, grafo, origen, destino, carga):
         distancias = {nodo: float('inf') for nodo in grafo.nodes}
         distancias[origen] = 0
         nodos_no_visitados = set(grafo.nodes)

@@ -15,10 +15,10 @@ arbol= crear_eventos()
 print("Arbol de eventos creado exitosamente")
 
 #Se instancian las naves
-nave_viper= Viper("viper", 2.5, 50)
+nave_viper= Viper("Viper", 2.5, 50)
 nave_transporte= Transporte("Cargament",1,200)
 nave_nebula= Nebula("Nebula",1.5,100)
 
 #ejecuta ventana interfaz
-interfaz= Gui(galaxia,nave_viper,nave_nebula,nave_transporte)
+interfaz= Gui(galaxia, arbol, nave_viper, nave_nebula, nave_transporte)
 interfaz.mainloop()

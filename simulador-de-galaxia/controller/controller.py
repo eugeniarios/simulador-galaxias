@@ -1,8 +1,8 @@
 import random
 from modelos.eventos import Evento
+import time
 
-
-def crear_eventos():
+def crear_eventos() -> Evento:
     agujero_negro= Evento(1,"agujero negro, se reduce la distancia a un parsec", -1)
     tormenta_espacial= Evento(2, "tormenta espacial se incrementa la distancia en un parsec", 1)
     lluvia_meteoritos= Evento (3,"lluvia de meteoritos se incrementa la distancia en dos parsec", 2)
@@ -22,7 +22,7 @@ def crear_eventos():
 
     return agujero_negro
 
-def obtener_eventos(nodo):
+def obtener_eventos(nodo) -> Evento:
     eventos=[]
     def recorrer_arbol(nodo):
         if nodo is not None: 
@@ -35,7 +35,7 @@ def obtener_eventos(nodo):
     else:
         return Evento(0, "no hay eventos en el arbol",0)
     
-def imprimir_resultados(nave,ruta,evento,origen,destino,carga,distancia_total):
+def imprimir_resultados(nave,ruta,evento,origen,destino,carga,distancia_total) -> str:
     print("---------------------Simulador de galaxias---------------------")
     print("------------Detalle nave------------------")
     print(f"-> Nave: {nave.get_nombre()}\n-> Velocidad: {nave.get_velocidad()}\n-> Capacidad: {nave.get_capacidad_carga()}")
@@ -45,3 +45,30 @@ def imprimir_resultados(nave,ruta,evento,origen,destino,carga,distancia_total):
     print(f"-> Planeta de partida: {origen}\n-> Planeta destino: {destino}\n-> Carga: {carga}\n-> Ruta mas corta: {ruta['ruta']} - Parsecs: {ruta['distancia_od']} \n-> Parsecs de ruta realizada por {nave.get_nombre()}: {ruta['distancia_carga']}")
     print(f"-> Distancia total con evento: {distancia_total}")
     print("------------Fin viaje----------------")
+
+def simular_viaje(nave,galaxia,origen,destino,carga,arbol) -> str:
+    # Aquí puedes obtener los datos ingresados por el usuario y realizar la simulación
+    evento= obtener_eventos(arbol)
+    viaje= nave.encontrar_ruta(galaxia, origen, destino, carga)
+    distancia_total= viaje["distancia_carga"] + evento.get_modificador_distancia()   
+    time.sleep(2)
+
+    mensaje = f"""
+    ------------------ Detalle nave ------------------
+    Nave: {nave.get_nombre()}
+    Velocidad: {nave.get_velocidad()}
+    Capacidad: {nave.get_capacidad_carga()}
+    ------------------ Creando evento ------------------
+    Evento espacial: {evento.get_nombre()}
+    Descripción evento= {evento.get_descripcion()}
+    Distancia afectada en {evento.get_modificador_distancia()} parsecs
+    ------------------ Calculando ruta ------------------
+    Planeta de partida: {origen}
+    Planeta destino: {destino}
+    Carga: {carga}
+    Ruta más corta: {viaje['ruta']} - Parsecs: {viaje['distancia_od']}
+    Parsecs de ruta realizada por {nave.get_nombre()}: {viaje['distancia_carga']}
+    Distancia total con evento: {distancia_total}
+    ------------------ Fin del viaje ------------------
+    """
+    return mensaje

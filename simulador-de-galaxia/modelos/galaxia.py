@@ -1,6 +1,9 @@
 import networkx as nx 
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+from config import MAPA
 class Galaxia:
     def __init__(self): 
         planetas = [
@@ -62,5 +65,5 @@ class Galaxia:
 
 
         plt.title("GalaxiasInterconectadas")
-        plt.savefig("simulador-de-galaxia/img/galaxias-interconectadas.png")   
+        plt.savefig(MAPA)   
 
