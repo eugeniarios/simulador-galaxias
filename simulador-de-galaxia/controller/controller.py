@@ -34,17 +34,6 @@ def obtener_eventos(nodo) -> Evento:
         return random.choice(eventos)
     else:
         return Evento(0, "no hay eventos en el arbol",0)
-    
-def imprimir_resultados(nave,ruta,evento,origen,destino,carga,distancia_total) -> str:
-    print("---------------------Simulador de galaxias---------------------")
-    print("------------Detalle nave------------------")
-    print(f"-> Nave: {nave.get_nombre()}\n-> Velocidad: {nave.get_velocidad()}\n-> Capacidad: {nave.get_capacidad_carga()}")
-    print("------------Creando evento----------------")
-    print(f"-> Evento espacial: {evento}")
-    print("------------Calculando ruta---------------")
-    print(f"-> Planeta de partida: {origen}\n-> Planeta destino: {destino}\n-> Carga: {carga}\n-> Ruta mas corta: {ruta['ruta']} - Parsecs: {ruta['distancia_od']} \n-> Parsecs de ruta realizada por {nave.get_nombre()}: {ruta['distancia_carga']}")
-    print(f"-> Distancia total con evento: {distancia_total}")
-    print("------------Fin viaje----------------")
 
 def simular_viaje(nave,galaxia,origen,destino,carga,arbol) -> str:
     # Aquí puedes obtener los datos ingresados por el usuario y realizar la simulación

@@ -36,7 +36,7 @@ class Gui(tk.Tk):
         # Configuración inicial de la ventana
         self.title('Simulador de Rutas de Naves Espaciales en una Galaxia')
         
-        w, h = 1024, 600
+        w, h = 1024, 700
         util_ventana.centrar_ventana(self, w, h)
 
     def paneles(self):
@@ -173,7 +173,7 @@ class Gui(tk.Tk):
         canvas.config(yscrollcommand=scrollbar.set)
 
         # Crear un cuadro de texto dentro del canvas
-        self._mensaje_cuadro = tk.Text(canvas, wrap=tk.WORD, background="white", foreground="black", width=80, height=15)
+        self._mensaje_cuadro = tk.Text(canvas, wrap=tk.WORD, background="white", foreground="black", width=90, height=20)
         self._mensaje_cuadro.grid(row=0, column=0, rowspan=5, columnspan=5, sticky="nsew")  # Ajusta los valores de rowspan y columnspan según sea necesario
         self._mensaje_cuadro.insert('1.0', self._resultado.get())  # Insertar contenido inicial
 
@@ -221,8 +221,6 @@ class Gui(tk.Tk):
     def iniciar_simulacion(self):
         self._resultado.set("Ejecutando de la simulación...")
         self.update_idletasks()
-
-        print(self._opcion_nave.get())
 
         origen = self._origen_planeta.get()
         destino = self._destino_planeta.get()
