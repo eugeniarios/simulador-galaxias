@@ -12,6 +12,9 @@ if exist %VIRTUAL_ENV_NAME% (
     python -m venv %VIRTUAL_ENV_NAME%
 )
 
+:: activar entorno
+call myenv\Scripts\activate
+
 :: Instalar las dependencias desde requirements.txt
 if exist requirements.txt (
     echo Instalando las dependencias desde requirements.txt...
